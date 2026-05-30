@@ -1,4 +1,3 @@
-import 'package:chat_bot_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class BotChatBubble extends StatelessWidget {
@@ -53,7 +52,7 @@ class RobotContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       margin: EdgeInsets.only(left: 29),
       decoration: ShapeDecoration(
-        color: AppColors.appBarBackground,
+        color: Colors.white,
         shape: CircleBorder(),
         shadows: [
           BoxShadow(

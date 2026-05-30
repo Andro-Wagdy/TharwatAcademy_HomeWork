@@ -3,15 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-class TextFieldWidget extends StatefulWidget {
-  const TextFieldWidget({super.key});
-
-  @override
-  State<TextFieldWidget> createState() => _TextFieldWidgetState();
-}
-
-class _TextFieldWidgetState extends State<TextFieldWidget> {
-  final TextEditingController _controller = TextEditingController();
+class TextFieldWidget extends StatelessWidget {
+  const TextFieldWidget({super.key, required TextEditingController controller}) : _controller = controller;
+  final TextEditingController _controller;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -64,7 +58,6 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 ),
               ],
             ),
-
             hintText: 'Write Your Message',
             hintStyle: TextStyle(
               color: const Color(0xFFA1A1A1),

@@ -1,4 +1,3 @@
-import 'package:chat_bot_app/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class UserChatBubble extends StatelessWidget {
@@ -28,7 +27,12 @@ class UserChatBubble extends StatelessWidget {
           child: Text(
             message,
             softWrap: true,
-            style: AppTextStyles.sentMessageText,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 13,
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
       ),
