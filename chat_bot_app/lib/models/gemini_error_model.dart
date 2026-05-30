@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:chat_bot_app/models/gemini_error_details_model.dart';
 
 class GeminiErrorModel {
+  static const String defaultMessage = 'Something went wrong';
+
   const GeminiErrorModel({
     required this.code,
     required this.message,
@@ -14,7 +16,7 @@ class GeminiErrorModel {
 
     return GeminiErrorModel(
       code: _asInt(error['code']),
-      message: error['message'] as String? ?? 'Something went wrong',
+      message: error['message'] as String? ?? defaultMessage,
       status: error['status'] as String? ?? '',
       details: (error['details'] as List<dynamic>? ?? [])
           .map((details) => GeminiErrorDetailsModel.fromJson(details))
@@ -83,6 +85,8 @@ class GeminiErrorModel {
 
   bool get isRateLimit => code == 429;
 
+  bool get isQuotaExceeded => isRateLimit || status == 'RESOURCE_EXHAUSTED';
+
   bool get isServerError => code >= 500;
 
   GeminiErrorDetailsModel? get errorInfoDetails {
@@ -99,18 +103,31 @@ class GeminiErrorModel {
     return null;
   }
 
+  GeminiErrorDetailsModel? get retryInfoDetails {
+    for (final detailsItem in details) {
+      if (detailsItem.isRetryInfo) return detailsItem;
+    }
+    return null;
+  }
+
   String get reason => errorInfoDetails?.reason ?? '';
 
   String get serviceName => errorInfoDetails?.serviceName ?? '';
 
+  String get retryDelay => retryInfoDetails?.retryDelay ?? '';
+
   bool get isInvalidApiKey => reason == 'API_KEY_INVALID';
 
   String get displayMessage {
+    if (isQuotaExceeded) {
+      return 'You exceeded your Gemini API quota. Please try again later.';
+    }
+
     final localizedMessage = localizedMessageDetails?.message ?? '';
     if (localizedMessage.trim().isNotEmpty) return localizedMessage;
     if (message.trim().isNotEmpty) return message;
     if (hasStatus) return status;
-    return 'Something went wrong';
+    return defaultMessage;
   }
 
   Map<String, dynamic> toJson() {

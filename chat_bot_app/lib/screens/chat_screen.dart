@@ -1,71 +1,61 @@
+import 'package:chat_bot_app/cubits/cubit/chat_cubit.dart';
 import 'package:chat_bot_app/widgets/app_bar_widget.dart';
 import 'package:chat_bot_app/widgets/bot_chat_bubble.dart';
 import 'package:chat_bot_app/widgets/user_chat_bubble.dart';
 import 'package:chat_bot_app/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ChatScreen extends StatefulWidget {
+class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
 
   @override
-  State<ChatScreen> createState() => _ChatScreenState();
-}
-
-class _ChatScreenState extends State<ChatScreen> {
-  List<String> messages = [];
-  final TextEditingController _controller = TextEditingController();
-
-  @override
-  void dispose() {
-    _controller.dispose();
-
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: const AppBarWidget(),
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                    padding: const EdgeInsets.only(bottom: 130),
-                    itemCount: messages.length,
-                    itemBuilder: (context, index) {
-                      final isUser = index.isEven;
-                      if (isUser) {
-                        return UserChatBubble(message: messages[index]);
-                      } else {
-                        return BotChatBubble(message: messages[index]);
-                      }
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Positioned(
-            right: 24,
-            left: 18,
-            bottom: 36,
-            child: TextFieldWidget(
-              controller: _controller,
-              onSend: () {
-                if (_controller.text.trim().isEmpty) return;
+    return BlocProvider(
+      create: (context) => ChatCubit(),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: const AppBarWidget(),
+        body: Stack(
+          children: [
+            Positioned.fill(
+              child: Column(
+                children: [
+                  Expanded(
+                    child: BlocBuilder<ChatCubit, ChatState>(
+                      builder: (context, state) {
+                        final messages = context.read<ChatCubit>().messages;
+                        final isLoading = state is ChatLoading;
 
-                setState(() {
-                  messages.add(_controller.text.trim());
-                  _controller.clear();
-                });
-              },
+                        return ListView.builder(
+                          padding: const EdgeInsets.only(bottom: 130),
+                          itemCount: messages.length + (isLoading ? 1 : 0),
+                          itemBuilder: (context, index) {
+                            if (isLoading && index == messages.length) {
+                              return const BotChatBubble(message: '...');
+                            }
+                            final message = messages[index];
+                            if (message.isUser) {
+                              return UserChatBubble(message: message.text);
+                            } else {
+                              return BotChatBubble(message: message.text);
+                            }
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+            Positioned(
+              right: 24,
+              left: 18,
+              bottom: 36,
+              child: TextFieldWidget(),
+            ),
+          ],
+        ),
       ),
     );
   }

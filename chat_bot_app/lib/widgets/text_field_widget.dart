@@ -1,14 +1,17 @@
+import 'package:chat_bot_app/cubits/cubit/chat_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-class TextFieldWidget extends StatelessWidget {
-  const TextFieldWidget({
-    super.key,
-    required TextEditingController controller,
-    required this.onSend,
-  }) : _controller = controller;
-  final TextEditingController _controller;
-  final void Function() onSend;
+class TextFieldWidget extends StatefulWidget {
+  const TextFieldWidget({super.key});
+
+  @override
+  State<TextFieldWidget> createState() => _TextFieldWidgetState();
+}
+
+class _TextFieldWidgetState extends State<TextFieldWidget> {
+  final TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,7 +54,12 @@ class TextFieldWidget extends StatelessWidget {
                 SvgPicture.asset('assets/images/microphone.svg'),
                 SizedBox(width: 7),
                 GestureDetector(
-                  onTap: onSend,
+                  onTap: () {
+                    BlocProvider.of<ChatCubit>(
+                      context,
+                    ).sendMessage(text: _controller.text);
+                    _controller.clear();
+                  },
                   child: SvgPicture.asset('assets/images/send.svg'),
                 ),
               ],

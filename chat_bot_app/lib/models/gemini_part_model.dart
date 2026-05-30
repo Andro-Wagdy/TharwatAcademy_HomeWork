@@ -1,8 +1,9 @@
 class GeminiPart {
-  const GeminiPart({
-    required this.text,
-    required this.thoughtSignature,
-  });
+  const GeminiPart({required this.text, this.thoughtSignature = ''});
+
+  factory GeminiPart.text(String text) {
+    return GeminiPart(text: text);
+  }
 
   factory GeminiPart.fromJson(dynamic json) {
     final map = json as Map<String, dynamic>? ?? {};
@@ -21,9 +22,12 @@ class GeminiPart {
   bool get hasThoughtSignature => thoughtSignature.trim().isNotEmpty;
 
   Map<String, dynamic> toJson() {
-    return {
-      'text': text,
-      'thoughtSignature': thoughtSignature,
-    };
+    final json = <String, dynamic>{'text': text};
+
+    if (hasThoughtSignature) {
+      json['thoughtSignature'] = thoughtSignature;
+    }
+
+    return json;
   }
 }

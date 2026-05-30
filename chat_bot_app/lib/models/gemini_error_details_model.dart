@@ -6,6 +6,7 @@ class GeminiErrorDetailsModel {
     required this.metadata,
     required this.locale,
     required this.message,
+    required this.retryDelay,
   });
 
   factory GeminiErrorDetailsModel.fromJson(dynamic json) {
@@ -18,6 +19,7 @@ class GeminiErrorDetailsModel {
       metadata: _asMap(map['metadata']) ?? {},
       locale: map['locale'] as String? ?? '',
       message: map['message'] as String? ?? '',
+      retryDelay: map['retryDelay'] as String? ?? '',
     );
   }
 
@@ -27,14 +29,19 @@ class GeminiErrorDetailsModel {
   final Map<String, dynamic> metadata;
   final String locale;
   final String message;
+  final String retryDelay;
 
   bool get isErrorInfo => type.endsWith('google.rpc.ErrorInfo');
 
   bool get isLocalizedMessage => type.endsWith('google.rpc.LocalizedMessage');
 
+  bool get isRetryInfo => type.endsWith('google.rpc.RetryInfo');
+
   bool get hasReason => reason.trim().isNotEmpty;
 
   bool get hasMessage => message.trim().isNotEmpty;
+
+  bool get hasRetryDelay => retryDelay.trim().isNotEmpty;
 
   String get serviceName => metadata['service'] as String? ?? '';
 
@@ -46,6 +53,7 @@ class GeminiErrorDetailsModel {
       'metadata': metadata,
       'locale': locale,
       'message': message,
+      'retryDelay': retryDelay,
     };
   }
 
