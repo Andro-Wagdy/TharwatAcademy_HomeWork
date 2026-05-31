@@ -1,4 +1,4 @@
-import 'package:chat_bot_app/cubits/cubit/chat_cubit.dart';
+import 'package:chat_bot_app/cubits/chat/chat_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';

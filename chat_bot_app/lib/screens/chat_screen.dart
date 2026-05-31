@@ -1,4 +1,4 @@
-import 'package:chat_bot_app/cubits/cubit/chat_cubit.dart';
+import 'package:chat_bot_app/cubits/chat/chat_cubit.dart';
 import 'package:chat_bot_app/widgets/app_bar_widget.dart';
 import 'package:chat_bot_app/widgets/chat_list_view.dart';
 import 'package:chat_bot_app/widgets/chat_suggestions_list_view.dart';

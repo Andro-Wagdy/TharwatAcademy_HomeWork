@@ -1,4 +1,4 @@
-import 'package:chat_bot_app/cubits/cubit/chat_cubit.dart';
+import 'package:chat_bot_app/cubits/chat/chat_cubit.dart';
 import 'package:chat_bot_app/widgets/bot_chat_bubble.dart';
 import 'package:chat_bot_app/widgets/user_chat_bubble.dart';
 import 'package:flutter/widgets.dart';
