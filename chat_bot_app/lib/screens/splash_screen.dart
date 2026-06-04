@@ -5,7 +5,6 @@ import 'package:chat_bot_app/screens/on_boarding_screen.dart';
 import 'package:chat_bot_app/shared_preferences_singleton.dart';
 import 'package:chat_bot_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,6 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     excuteNavigation();
   }
+
   void excuteNavigation() {
     final bool seenOnboarding =
         SharedPreferencesSingleton.instance.getBool(
