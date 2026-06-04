@@ -1,3 +1,6 @@
+import 'package:chat_bot_app/constants/assets.dart';
+import 'package:chat_bot_app/theme/app_colors.dart';
+import 'package:chat_bot_app/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class BotChatBubble extends StatelessWidget {
@@ -20,7 +23,7 @@ class BotChatBubble extends StatelessWidget {
               margin: EdgeInsets.only(top: 22, left: 7, bottom: 27),
               padding: EdgeInsets.symmetric(vertical: 18, horizontal: 22),
               decoration: ShapeDecoration(
-                color: Color(0xFFEEEEEE),
+                color: AppColors.botBubble,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(25),
@@ -29,11 +32,7 @@ class BotChatBubble extends StatelessWidget {
                   ),
                 ),
               ),
-              child: Text(
-                message,
-                softWrap: true,
-                style: TextStyle(color: Color(0xFF4F4F4F)),
-              ),
+              child: Text(message, softWrap: true, style: AppStyles.botMessage),
             ),
           ),
         ],
@@ -52,11 +51,11 @@ class RobotContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       margin: EdgeInsets.only(left: 29),
       decoration: ShapeDecoration(
-        color: Colors.white,
+        color: AppColors.white,
         shape: CircleBorder(),
         shadows: [
           BoxShadow(
-            color: Color(0x0C000000),
+            color: AppColors.robotShadow,
             blurRadius: 1.96,
             offset: Offset(0, 1.96),
             spreadRadius: 0,
@@ -74,7 +73,7 @@ class RobotContainer extends StatelessWidget {
             height: 17.66,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/robot.png'),
+                image: AssetImage(Assets.assetsImagesRobot),
                 fit: BoxFit.cover,
               ),
             ),

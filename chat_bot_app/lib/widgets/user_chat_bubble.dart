@@ -1,3 +1,5 @@
+import 'package:chat_bot_app/theme/app_colors.dart';
+import 'package:chat_bot_app/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class UserChatBubble extends StatelessWidget {
@@ -15,7 +17,7 @@ class UserChatBubble extends StatelessWidget {
           margin: EdgeInsets.only(top: 22, right: 29, bottom: 27),
           padding: EdgeInsets.symmetric(vertical: 18, horizontal: 22),
           decoration: ShapeDecoration(
-            color: Color(0xFF3369FF),
+            color: AppColors.primary,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(25),
@@ -24,16 +26,7 @@ class UserChatBubble extends StatelessWidget {
               ),
             ),
           ),
-          child: Text(
-            message,
-            softWrap: true,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 13,
-              fontFamily: 'Nunito',
-              fontWeight: FontWeight.w700,
-            ),
-          ),
+          child: Text(message, softWrap: true, style: AppStyles.userMessage),
         ),
       ),
     );

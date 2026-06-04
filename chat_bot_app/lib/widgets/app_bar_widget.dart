@@ -1,3 +1,6 @@
+import 'package:chat_bot_app/constants/assets.dart';
+import 'package:chat_bot_app/theme/app_colors.dart';
+import 'package:chat_bot_app/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -9,26 +12,18 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       scrolledUnderElevation: 0.01,
       elevation: 0.01,
-      shadowColor: Color(0xFFEBEBEB),
-      backgroundColor: Colors.white,
-      leading: Image.asset('assets/images/arrow-left.png', scale: 4),
+      shadowColor: AppColors.appBarShadow,
+      backgroundColor: AppColors.white,
+      leading: Image.asset(Assets.assetsImagesArrowLeft, scale: 4),
       title: Row(
         mainAxisSize: .min,
         children: [
-          Image.asset('assets/images/robot.png', scale: 4),
+          Image.asset(Assets.assetsImagesRobot, scale: 4),
           SizedBox(width: 20),
           Column(
             crossAxisAlignment: .start,
             children: [
-              Text(
-                'ChatGPT',
-                style: TextStyle(
-                  color: const Color(0xFF3369FF),
-                  fontSize: 20,
-                  fontFamily: 'Nunito',
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
+              Text('ChatGPT', style: AppStyles.appBarTitle),
               SizedBox(height: 1),
               Row(
                 mainAxisSize: .min,
@@ -37,20 +32,12 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                     width: 6,
                     height: 6,
                     decoration: ShapeDecoration(
-                      color: const Color(0xFF3ABF37),
+                      color: AppColors.online,
                       shape: OvalBorder(),
                     ),
                   ),
                   SizedBox(width: 5),
-                  Text(
-                    'Online',
-                    style: TextStyle(
-                      color: const Color(0xFF3ABF37),
-                      fontSize: 17,
-                      fontFamily: 'Nunito',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                  Text('Online', style: AppStyles.onlineStatus),
                 ],
               ),
             ],
@@ -58,10 +45,13 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         ],
       ),
       actions: [
-        SvgPicture.asset('assets/images/volume-high.svg', fit: .cover),
+        SvgPicture.asset(Assets.assetsImagesVolumeHighSvg, fit: .cover),
         Padding(
           padding: const EdgeInsets.only(left: 19, right: 29),
-          child: SvgPicture.asset('assets/images/export-icon.svg', fit: .cover),
+          child: SvgPicture.asset(
+            Assets.assetsImagesExportIconSvg,
+            fit: .cover,
+          ),
         ),
       ],
     );

@@ -1,4 +1,5 @@
 import 'package:chat_bot_app/cubits/chat/chat_cubit.dart';
+import 'package:chat_bot_app/theme/app_colors.dart';
 import 'package:chat_bot_app/widgets/app_bar_widget.dart';
 import 'package:chat_bot_app/widgets/chat_list_view.dart';
 import 'package:chat_bot_app/widgets/chat_suggestions_list_view.dart';
@@ -15,6 +16,8 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+
   final List<String> explainCategoryTitleList = [
     'Explain Quantum physics',
     'What are wormholes explain like i am 5',
@@ -31,8 +34,21 @@ class _ChatScreenState extends State<ChatScreen> {
   ];
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_scrollController.hasClients) return;
+
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    });
   }
 
   @override
@@ -40,12 +56,21 @@ class _ChatScreenState extends State<ChatScreen> {
     return BlocProvider(
       create: (context) => ChatCubit(),
       child: Scaffold(
-        backgroundColor: Colors.white,
+      
         appBar: const AppBarWidget(),
         body: Stack(
           children: [
             Positioned.fill(
-              child: BlocBuilder<ChatCubit, ChatState>(
+              child: BlocConsumer<ChatCubit, ChatState>(
+                listener: (context, state) {
+                  if (state is ChatFailure) {
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
+                  } else if (state is ChatLoaded) {
+                    _scrollToBottom();
+                  }
+                },
                 builder: (context, state) {
                   if (state is ChatInitial) {
                     return ChatSuggestionsListView(
@@ -59,8 +84,32 @@ class _ChatScreenState extends State<ChatScreen> {
                       writeCategoryTitleList: writeCategoryTitleList,
                       translateCategoryTitleList: translateCategoryTitleList,
                     );
+                  } else if (state is ChatLoading) {
+                    return Stack(
+                      children: [
+                        ChatListView(
+                          messages: state.messages,
+                          scrollController: _scrollController,
+                        ),
+                        const Positioned.fill(
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: AppColors.loadingIndicator,
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  } else if (state is ChatLoaded) {
+                    return ChatListView(
+                      messages: state.messages,
+                      scrollController: _scrollController,
+                    );
+                  } else if (state is ChatFailure) {
+                    return const SizedBox.shrink();
                   }
-                  return ChatListView();
+                  return const SizedBox.shrink();
                 },
               ),
             ),

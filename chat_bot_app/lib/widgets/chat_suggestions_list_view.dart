@@ -1,3 +1,4 @@
+import 'package:chat_bot_app/constants/assets.dart';
 import 'package:chat_bot_app/widgets/suggestion_item.dart';
 import 'package:flutter/widgets.dart';
 
@@ -25,20 +26,20 @@ class ChatSuggestionsListView extends StatelessWidget {
           SizedBox(height: 19),
           SuggestionItem(
             titleList: explainCategoryTitleList,
-            icon: 'assets/images/explain_icon.svg',
+            icon: Assets.assetsImagesExplainIcon,
             categoryTitle: 'Explain',
             onTap: onTap,
           ),
           SizedBox(height: 37),
           SuggestionItem(
-            icon: 'assets/images/edit_icon.svg',
+            icon: Assets.assetsImagesEditIcon,
             categoryTitle: 'Write & edit',
             titleList: writeCategoryTitleList,
             onTap: onTap,
           ),
           SizedBox(height: 37),
           SuggestionItem(
-            icon: 'assets/images/translate_icon.svg',
+            icon: Assets.assetsImagesTranslateIcon,
             categoryTitle: 'Translate',
             titleList: translateCategoryTitleList,
             onTap: onTap,

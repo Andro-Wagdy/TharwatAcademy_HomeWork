@@ -1,3 +1,5 @@
+import 'package:chat_bot_app/theme/app_colors.dart';
+import 'package:chat_bot_app/theme/app_styles.dart';
 import 'package:flutter/widgets.dart';
 
 class SuggestionContainerItem extends StatelessWidget {
@@ -19,7 +21,7 @@ class SuggestionContainerItem extends StatelessWidget {
         padding: .symmetric(vertical: 10.5),
         margin: .symmetric(vertical: 8),
         decoration: ShapeDecoration(
-          color: const Color(0xFFF4F4F4),
+          color: AppColors.suggestionBackground,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
@@ -27,12 +29,7 @@ class SuggestionContainerItem extends StatelessWidget {
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: TextStyle(
-            color: const Color(0xFF3D3D3D),
-            fontSize: 14,
-            fontFamily: 'Nunito',
-            fontWeight: FontWeight.w500,
-          ),
+          style: AppStyles.suggestionText,
         ),
       ),
     );

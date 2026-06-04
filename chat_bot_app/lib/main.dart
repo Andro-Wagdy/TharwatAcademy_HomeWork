@@ -1,27 +1,26 @@
-import 'package:chat_bot_app/screens/chat_screen.dart';
-import 'package:chat_bot_app/screens/on_boarding_screen.dart';
+import 'package:chat_bot_app/screens/splash_screen.dart';
+import 'package:chat_bot_app/shared_preferences_singleton.dart';
+import 'package:chat_bot_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
- Future<void> main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferencesSingleton.init();
   await dotenv.load(fileName: ".env");
-  final prefs = await SharedPreferences.getInstance();
-  final bool seenOnboarding = prefs.getBool('seenOnboarding') ?? false;
-  runApp(MyApp(seenOnboarding: seenOnboarding));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final bool seenOnboarding;
-  const MyApp({super.key, required this.seenOnboarding});
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(scaffoldBackgroundColor: AppColors.white),
       debugShowCheckedModeBanner: false,
-      home: seenOnboarding ? const ChatScreen() : const OnboardingScreen(),
+      home: const SplashScreen(),
     );
   }
 }

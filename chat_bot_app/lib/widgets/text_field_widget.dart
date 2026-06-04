@@ -1,21 +1,25 @@
+import 'package:chat_bot_app/constants/assets.dart';
 import 'package:chat_bot_app/cubits/chat/chat_cubit.dart';
+import 'package:chat_bot_app/theme/app_colors.dart';
+import 'package:chat_bot_app/theme/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class TextFieldWidget extends StatelessWidget {
-  const TextFieldWidget({super.key, required TextEditingController controller}) : _controller = controller;
+  const TextFieldWidget({super.key, required TextEditingController controller})
+    : _controller = controller;
   final TextEditingController _controller;
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(right: 16),
       decoration: ShapeDecoration(
-        color: Colors.white,
+        color: AppColors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         shadows: [
           BoxShadow(
-            color: Color(0x21000000),
+            color: AppColors.textFieldShadow,
             blurRadius: 20,
             offset: Offset(5, 4),
             spreadRadius: 0,
@@ -33,19 +37,14 @@ class TextFieldWidget extends StatelessWidget {
           onSubmitted: (value) {
             _controller.text = value;
           },
-          style: TextStyle(
-            color: const Color(0xFF3369FF),
-            fontSize: 13,
-            fontFamily: 'Nunito',
-            fontWeight: FontWeight.w700,
-          ),
-          cursorColor: const Color(0xFF3369FF),
+          style: AppStyles.textFieldInput,
+          cursorColor: AppColors.primary,
 
           decoration: InputDecoration(
             suffixIcon: Row(
               mainAxisSize: .min,
               children: [
-                SvgPicture.asset('assets/images/microphone.svg'),
+                SvgPicture.asset(Assets.assetsImagesMicrophone),
                 SizedBox(width: 7),
                 GestureDetector(
                   onTap: () {
@@ -54,24 +53,19 @@ class TextFieldWidget extends StatelessWidget {
                     ).sendMessage(text: _controller.text);
                     _controller.clear();
                   },
-                  child: SvgPicture.asset('assets/images/send.svg'),
+                  child: SvgPicture.asset(Assets.assetsImagesSend),
                 ),
               ],
             ),
             hintText: 'Write Your Message',
-            hintStyle: TextStyle(
-              color: const Color(0xFFA1A1A1),
-              fontSize: 13,
-              fontFamily: 'Nunito',
-              fontWeight: FontWeight.w700,
-            ),
+            hintStyle: AppStyles.textFieldHint,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
-              borderSide: BorderSide(color: Colors.white),
+              borderSide: BorderSide(color: AppColors.white),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
-              borderSide: BorderSide(color: Colors.white),
+              borderSide: BorderSide(color: AppColors.white),
             ),
           ),
         ),
