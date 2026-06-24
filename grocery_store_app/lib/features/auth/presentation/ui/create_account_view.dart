@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_store_app/core/theme/app_colors.dart';
-import 'package:grocery_store_app/widgets/view_background_widget.dart';
+import 'package:grocery_store_app/features/auth/presentation/ui/widgets/view_body.dart';
+import 'package:grocery_store_app/features/auth/presentation/ui/widgets/view_background_widget.dart';
 
 class CreateAccountView extends StatelessWidget {
   const CreateAccountView({super.key});
@@ -15,7 +16,7 @@ class CreateAccountView extends StatelessWidget {
             height: MediaQuery.sizeOf(context).height * 480 / 812,
             width: MediaQuery.sizeOf(context).width,
             decoration: ShapeDecoration(
-              color: AppColors.primaryColor,
+              color: AppColors.primary,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
@@ -23,6 +24,7 @@ class CreateAccountView extends StatelessWidget {
                 ),
               ),
             ),
+            child: ViewBody(),
           ),
         ),
       ),

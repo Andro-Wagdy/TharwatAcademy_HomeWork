@@ -14,7 +14,14 @@ class GroceryStoreApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(scaffoldBackgroundColor: AppColors.primaryColor),
+      theme: ThemeData(
+        scaffoldBackgroundColor: AppColors.primary,
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: AppColors.borderFocused,
+          selectionColor: AppColors.borderFocused,
+          selectionHandleColor: Colors.transparent,
+        ),
+      ),
       home: const CreateAccountView(),
     );
   }
