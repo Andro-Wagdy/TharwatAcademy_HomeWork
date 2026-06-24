@@ -10,13 +10,18 @@ class AppStyles {
     fontSize: 20,
     fontWeight: FontWeight.w600,
   );
+    static final TextStyle p14W400 = _poppinsFont.copyWith(
+    fontSize: 14,
+    fontWeight: .w400,
+  );
   static final TextStyle p14W600 = _poppinsFont.copyWith(
     fontSize: 14,
     fontWeight: .w600,
   );
-  static final TextStyle p14W400 = _poppinsFont.copyWith(
-    fontSize: 14,
-    fontWeight: .w400,
+
+    static final TextStyle p16W600 = _poppinsFont.copyWith(
+    fontSize: 16,
+    fontWeight: .w600,
   );
   static final TextStyle p16W700 = _poppinsFont.copyWith(
     fontSize: 16,

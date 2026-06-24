@@ -25,7 +25,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       controller: widget.controller,
       style: AppStyles.dm15W400.copyWith(
         color: AppColors.secondry,
-        fontSize: isObscure ? 26 : 15,
+        fontSize: isObscure ? 26 : 16,
         height: isObscure ? 0.9 : 1.2,
         letterSpacing: isObscure ? 2 : 1,
       ),
@@ -48,16 +48,16 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
         ),
         hintText: widget.hintText,
         hintStyle: AppStyles.i16W400.copyWith(color: AppColors.hintText),
-        enabledBorder: buildBorder(),
-        focusedBorder: buildBorder(),
+        enabledBorder: buildBorder(color: AppColors.borderIdle),
+        focusedBorder: buildBorder(color: AppColors.borderFocused),
       ),
     );
   }
 
-  OutlineInputBorder buildBorder() {
+  OutlineInputBorder buildBorder({required Color color}) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(30),
-      borderSide: BorderSide(color: AppColors.borderFocused, width: 1),
+      borderSide: BorderSide(color: color, width: 1),
     );
   }
 }
