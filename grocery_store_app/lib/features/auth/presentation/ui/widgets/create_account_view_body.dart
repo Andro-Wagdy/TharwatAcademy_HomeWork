@@ -15,10 +15,17 @@ class CreateAccountViewBody extends StatefulWidget {
 }
 
 class _CreateAccountViewBodyState extends State<CreateAccountViewBody> {
-  final TextEditingController controller = TextEditingController();
+  final TextEditingController _controllerFirstName = TextEditingController();
+  final TextEditingController _controllerLastName = TextEditingController();
+  final TextEditingController _controllerEmail = TextEditingController();
+  final TextEditingController _controllerPassword = TextEditingController();
+
   @override
   void dispose() {
-    controller.dispose();
+    _controllerFirstName.dispose();
+    _controllerLastName.dispose();
+    _controllerEmail.dispose();
+    _controllerPassword.dispose();
     super.dispose();
   }
 
@@ -44,7 +51,7 @@ class _CreateAccountViewBodyState extends State<CreateAccountViewBody> {
             children: [
               Expanded(
                 child: CustomTextField(
-                  controller: controller,
+                  controller: _controllerFirstName,
                   hintText: 'First Name',
                   contentPadding: .symmetric(vertical: 10, horizontal: 22),
                 ),
@@ -52,7 +59,7 @@ class _CreateAccountViewBodyState extends State<CreateAccountViewBody> {
               SizedBox(width: 19),
               Expanded(
                 child: CustomTextField(
-                  controller: controller,
+                  controller: _controllerLastName,
                   hintText: 'Last Name',
                   contentPadding: .symmetric(vertical: 10, horizontal: 22),
                 ),
@@ -61,14 +68,14 @@ class _CreateAccountViewBodyState extends State<CreateAccountViewBody> {
           ),
           SizedBox(height: 16),
           CustomTextField(
-            controller: controller,
+            controller: _controllerEmail,
             hintText: 'Email Address',
             contentPadding: .symmetric(vertical: 20, horizontal: 22),
             keyboardType: .emailAddress,
           ),
           SizedBox(height: 16),
           PasswordTextField(
-            controller: controller,
+            controller: _controllerPassword,
             hintText: 'Password',
             contentPadding: .symmetric(vertical: 20, horizontal: 22),
           ),

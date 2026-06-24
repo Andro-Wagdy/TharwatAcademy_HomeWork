@@ -15,10 +15,12 @@ class SignInViewBody extends StatefulWidget {
 }
 
 class _CreateAccountViewBodyState extends State<SignInViewBody> {
-  final TextEditingController controller = TextEditingController();
+  final TextEditingController _controllerEmail = TextEditingController();
+  final TextEditingController _controllerPassword = TextEditingController();
   @override
   void dispose() {
-    controller.dispose();
+    _controllerEmail.dispose();
+    _controllerPassword.dispose();
     super.dispose();
   }
 
@@ -41,14 +43,14 @@ class _CreateAccountViewBodyState extends State<SignInViewBody> {
           ),
           SizedBox(height: 32),
           CustomTextField(
-            controller: controller,
+            controller: _controllerEmail,
             hintText: 'Email',
             contentPadding: .symmetric(vertical: 18, horizontal: 20),
             keyboardType: .emailAddress,
           ),
           SizedBox(height: 12),
           PasswordTextField(
-            controller: controller,
+            controller: _controllerPassword,
             hintText: 'Password',
             contentPadding: .symmetric(vertical: 18, horizontal: 20),
           ),
