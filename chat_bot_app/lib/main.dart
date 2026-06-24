@@ -1,6 +1,6 @@
-import 'package:chat_bot_app/screens/splash_screen.dart';
-import 'package:chat_bot_app/shared_preferences_singleton.dart';
-import 'package:chat_bot_app/theme/app_colors.dart';
+import 'package:chat_bot_app/features/splash/presentation/ui/splash_screen.dart';
+import 'package:chat_bot_app/core/shared_preferences_singleton.dart';
+import 'package:chat_bot_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
