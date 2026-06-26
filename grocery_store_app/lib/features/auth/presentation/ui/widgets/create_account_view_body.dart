@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:grocery_store_app/constants/assets.dart';
 import 'package:grocery_store_app/core/theme/app_colors.dart';
 import 'package:grocery_store_app/core/theme/app_styles.dart';
+import 'package:grocery_store_app/features/auth/presentation/cubits/register/register_cubit.dart';
 import 'package:grocery_store_app/features/auth/presentation/ui/widgets/password_text_field.dart';
+import 'package:grocery_store_app/features/auth/presentation/ui/widgets/sign_in_dialog.dart';
 import 'package:grocery_store_app/widgets/custom_button.dart';
 import 'package:grocery_store_app/widgets/custom_text_field.dart';
 
@@ -108,15 +111,47 @@ class _CreateAccountViewBodyState extends State<CreateAccountViewBody> {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 23),
-          CustomButton(
-            onPressed: () {},
-            backgoundColor: AppColors.accent,
-            child: Align(
-              child: Text(
-                'CREATE AN ACCOUNT',
-                style: AppStyles.p16W700.copyWith(color: AppColors.secondry),
-              ),
-            ),
+          BlocConsumer<RegisterCubit, RegisterState>(
+            listener: (context, state) {
+              if (state is RegisterSuccess) {
+                showDialog(
+                  context: context,
+                  builder: (context) => SignInDialog(
+                    controllerFirstName: _controllerFirstName,
+                    controllerLastName: _controllerLastName,
+                  ),
+                );
+              }
+              if (state is RegisterFailure) {
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.errMessage)));
+              }
+            },
+            builder: (context, state) {
+              return state is RegisterLoading
+                  ? CircularProgressIndicator(color: AppColors.accent)
+                  : CustomButton(
+                      onPressed: () async {
+                        var cubit = BlocProvider.of<RegisterCubit>(context);
+                        await cubit.registerUser(
+                          email: _controllerEmail.text,
+                          password: _controllerPassword.text,
+                          firstName: _controllerFirstName.text,
+                          lastName: _controllerLastName.text,
+                        );
+                      },
+                      backgoundColor: AppColors.accent,
+                      child: Align(
+                        child: Text(
+                          'CREATE AN ACCOUNT',
+                          style: AppStyles.p16W700.copyWith(
+                            color: AppColors.secondry,
+                          ),
+                        ),
+                      ),
+                    );
+            },
           ),
         ],
       ),
