@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_store_app/core/theme/app_colors.dart';
+import 'package:grocery_store_app/features/auth/presentation/cubits/user/user_cubit.dart';
 import 'package:grocery_store_app/features/auth/presentation/ui/create_account_view.dart';
 import 'package:grocery_store_app/features/auth/presentation/ui/sign_in_view.dart';
 
@@ -16,17 +18,21 @@ class GroceryStoreApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: AppColors.primary,
-        textSelectionTheme: TextSelectionThemeData(
-          cursorColor: AppColors.borderFocused,
-          selectionColor: AppColors.borderFocused,
-          selectionHandleColor: Colors.transparent,
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => UserCubit())],
+
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          scaffoldBackgroundColor: AppColors.primary,
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: AppColors.borderFocused,
+            selectionColor: AppColors.borderFocused,
+            selectionHandleColor: Colors.transparent,
+          ),
         ),
+        home: const CreateAccountView(),
       ),
-      home: const CreateAccountView(),
     );
   }
 }

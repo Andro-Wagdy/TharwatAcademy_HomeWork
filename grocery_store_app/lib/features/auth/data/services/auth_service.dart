@@ -35,7 +35,6 @@ class AuthService {
 
   Future<UserModel> getCurrentUser() async {
     String uid = FirebaseAuth.instance.currentUser!.uid;
-
     DocumentSnapshot doc = await FirebaseFirestore.instance
         .collection('users')
         .doc(uid)

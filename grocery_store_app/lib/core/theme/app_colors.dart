@@ -11,4 +11,6 @@ class AppColors {
   static const Color hintText = Color(0xFF9C9F9E);
   static const Color alert = Color(0xFFF2F2F2);
   static const Color secondryName = Color(0xFF7A1E76);
+  static const Color accentText = Color(0xFF5E5E5E);
+  static const Color error = Colors.red;
 }

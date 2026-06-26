@@ -8,21 +8,26 @@ class PasswordTextField extends StatefulWidget {
     required this.controller,
     required this.hintText,
     required this.contentPadding,
+    required this.validator, required this.autovalidateMode,
   });
   final TextEditingController controller;
   final String hintText;
   final EdgeInsetsGeometry contentPadding;
-
+  final FormFieldValidator<String>? validator;
+  final AutovalidateMode autovalidateMode;
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();
 }
 
 class _PasswordTextFieldState extends State<PasswordTextField> {
   bool isObscure = true;
+
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      autovalidateMode: widget.autovalidateMode,
       controller: widget.controller,
+      validator: widget.validator,
       style: AppStyles.dm15W400.copyWith(
         color: AppColors.secondry,
         fontSize: isObscure ? 26 : 16,
@@ -50,6 +55,8 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
         hintStyle: AppStyles.i16W400.copyWith(color: AppColors.hintText),
         enabledBorder: buildBorder(color: AppColors.borderIdle),
         focusedBorder: buildBorder(color: AppColors.borderFocused),
+        errorBorder: buildBorder(color: AppColors.error),
+        focusedErrorBorder: buildBorder(color: AppColors.error)
       ),
     );
   }
