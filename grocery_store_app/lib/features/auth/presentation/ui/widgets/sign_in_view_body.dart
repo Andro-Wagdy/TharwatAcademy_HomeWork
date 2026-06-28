@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:grocery_store_app/constants/assets.dart';
+import 'package:grocery_store_app/core/constants/assets.dart';
 import 'package:grocery_store_app/core/theme/app_colors.dart';
 import 'package:grocery_store_app/core/theme/app_styles.dart';
 import 'package:grocery_store_app/features/auth/data/validators/auth_validators.dart';

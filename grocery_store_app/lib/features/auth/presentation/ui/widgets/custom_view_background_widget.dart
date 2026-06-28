@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:grocery_store_app/constants/assets.dart';
+import 'package:grocery_store_app/core/constants/assets.dart';
 
 class CustomViewBackgroundWidget extends StatelessWidget {
   const CustomViewBackgroundWidget({super.key, required this.child, required this.backgroundImage});

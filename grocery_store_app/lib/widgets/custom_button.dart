@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.onPressed, required this.child, required this.backgoundColor});
+  const CustomButton({
+    super.key,
+    required this.onPressed,
+    required this.backgoundColor,
+    required this.child,
+    this.hasBorder = false,
+  });
   final Widget child;
   final VoidCallback onPressed;
   final Color backgoundColor;
+  final bool? hasBorder;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -16,7 +23,7 @@ class CustomButton extends StatelessWidget {
           color: backgoundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
-            
+            side: hasBorder! ? BorderSide(width: 2) : BorderSide.none,
           ),
         ),
         child: child,

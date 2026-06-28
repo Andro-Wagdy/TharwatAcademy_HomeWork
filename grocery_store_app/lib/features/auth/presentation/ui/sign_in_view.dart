@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grocery_store_app/constants/assets.dart';
+import 'package:grocery_store_app/core/constants/assets.dart';
 import 'package:grocery_store_app/core/theme/app_colors.dart';
 import 'package:grocery_store_app/features/auth/presentation/cubits/sign_in/sign_in_cubit.dart';
 import 'package:grocery_store_app/features/auth/presentation/ui/widgets/custom_view_background_widget.dart';

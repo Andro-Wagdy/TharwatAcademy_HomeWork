@@ -81,5 +81,5 @@ flutter:
   # see https://flutter.dev/to/font-from-package
 flutter_assets:
   assets_path: assets/
-  output_path: lib/constants/
+  output_path: lib/core/constants/
   filename: assets.dart

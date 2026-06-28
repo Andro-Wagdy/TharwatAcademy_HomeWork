@@ -13,4 +13,5 @@ class AppColors {
   static const Color secondryName = Color(0xFF7A1E76);
   static const Color accentText = Color(0xFF5E5E5E);
   static const Color error = Colors.red;
+  static const Color sliderEnabled = Color(0xFF12B669);
 }

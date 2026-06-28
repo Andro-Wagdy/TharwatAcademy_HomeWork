@@ -5,6 +5,7 @@ import 'package:grocery_store_app/core/theme/app_colors.dart';
 import 'package:grocery_store_app/features/auth/presentation/cubits/user/user_cubit.dart';
 import 'package:grocery_store_app/features/auth/presentation/ui/create_account_view.dart';
 import 'package:grocery_store_app/features/auth/presentation/ui/sign_in_view.dart';
+import 'package:grocery_store_app/features/onboarding/presentation/ui/onboarding_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +21,6 @@ class GroceryStoreApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [BlocProvider(create: (context) => UserCubit())],
-
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -31,7 +31,7 @@ class GroceryStoreApp extends StatelessWidget {
             selectionHandleColor: Colors.transparent,
           ),
         ),
-        home: const CreateAccountView(),
+        home: const OnboardingView(),
       ),
     );
   }

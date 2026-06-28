@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:grocery_store_app/core/constants/app_constants.dart';
 import 'package:grocery_store_app/features/auth/data/models/user_model.dart';
 
 class AuthService {
@@ -18,7 +19,7 @@ class AuthService {
 
     String uid = credential.user!.uid;
 
-    await firestore.collection('users').doc(uid).set({
+    await firestore.collection(AppConstants.kUsersCollectionKey).doc(uid).set({
       'uid': uid,
       'firstName': firstName,
       'lastName': lastName,
@@ -36,7 +37,7 @@ class AuthService {
   Future<UserModel> getCurrentUser() async {
     String uid = FirebaseAuth.instance.currentUser!.uid;
     DocumentSnapshot doc = await FirebaseFirestore.instance
-        .collection('users')
+        .collection(AppConstants.kUsersCollectionKey)
         .doc(uid)
         .get();
 
