@@ -5,6 +5,7 @@ import 'package:grocery_store_app/core/shared_preferences_singleton.dart';
 import 'package:grocery_store_app/core/theme/app_colors.dart';
 import 'package:grocery_store_app/features/auth/presentation/cubits/user/user_cubit.dart';
 import 'package:grocery_store_app/features/onboarding/presentation/ui/onboarding_view.dart';
+import 'package:grocery_store_app/features/splash/presentation/ui/splash_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,7 @@ class GroceryStoreApp extends StatelessWidget {
             selectionHandleColor: Colors.transparent,
           ),
         ),
-        home: const OnboardingView(),
+        home: const SplashView(),
       ),
     );
   }
