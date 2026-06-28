@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:grocery_store_app/core/constants/app_constants.dart';
 import 'package:grocery_store_app/core/constants/assets.dart';
+import 'package:grocery_store_app/core/shared_preferences_singleton.dart';
 import 'package:grocery_store_app/core/theme/app_colors.dart';
 import 'package:grocery_store_app/core/theme/app_styles.dart';
 import 'package:grocery_store_app/features/auth/presentation/ui/create_account_view.dart';
@@ -40,6 +42,13 @@ class _OnboardingViewState extends State<OnboardingView> {
   ];
   int pageIndex = 0;
   final PageController _pageController = PageController();
+  void _completeOnBoarding(BuildContext context) {
+    SharedPreferencesSingleton.instance.setBool(
+      AppConstants.seenOnboardingKey,
+      true,
+    );
+  }
+
   @override
   void dispose() {
     _pageController.dispose();
@@ -102,6 +111,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                       children: [
                         CustomButton(
                           onPressed: () {
+                            _completeOnBoarding(context);
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -123,6 +133,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                         CustomButton(
                           hasBorder: true,
                           onPressed: () {
+                            _completeOnBoarding(context);
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
