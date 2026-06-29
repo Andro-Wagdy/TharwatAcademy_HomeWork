@@ -23,6 +23,10 @@ class AppStyles {
     fontSize: 14,
     fontWeight: .w600,
   );
+    static final TextStyle p14W700 = _poppinsFont.copyWith(
+    fontSize: 14,
+    fontWeight: .w700,
+  );
   static final TextStyle p16W600 = _poppinsFont.copyWith(
     fontSize: 16,
     fontWeight: .w600,
@@ -30,6 +34,14 @@ class AppStyles {
   static final TextStyle p16W700 = _poppinsFont.copyWith(
     fontSize: 16,
     fontWeight: .w700,
+  );
+    static final TextStyle p18W500 = _poppinsFont.copyWith(
+    fontSize: 18,
+    fontWeight: .w500,
+  );
+    static final TextStyle p18W600 = _poppinsFont.copyWith(
+    fontSize: 18,
+    fontWeight: .w600,
   );
   static final TextStyle p38W700 = _poppinsFont.copyWith(
     fontSize: 38,

@@ -4,6 +4,7 @@ class AppColors {
   AppColors._();
   static const Color primary = Colors.white;
   static const Color secondry = Colors.black;
+  static const Color primaryText = Color(0xFFF2F2F2);
   static const Color secondryText = Color(0xFF2F2F2F);
   static const Color accent = Color(0xFFFDC44B);
   static const Color borderIdle = Color(0xFFC9C9C9);
@@ -14,4 +15,6 @@ class AppColors {
   static const Color accentText = Color(0xFF5E5E5E);
   static const Color error = Colors.red;
   static const Color sliderEnabled = Color(0xFF12B669);
+  static const Color shadow = Color(0x0C000000);
+  static const Color container = Color(0xFFFAFAFA);
 }
