@@ -7,7 +7,6 @@ import 'package:grocery_store_app/core/theme/app_colors.dart';
 import 'package:grocery_store_app/core/theme/app_styles.dart';
 import 'package:grocery_store_app/features/auth/presentation/ui/create_account_view.dart';
 import 'package:grocery_store_app/features/auth/presentation/ui/sign_in_view.dart';
-import 'package:grocery_store_app/features/onboarding/data/models/onboarding_model.dart';
 import 'package:grocery_store_app/features/onboarding/data/onboarding_data.dart';
 import 'package:grocery_store_app/features/onboarding/presentation/ui/widgets/onboarding_item.dart';
 import 'package:grocery_store_app/features/onboarding/presentation/ui/widgets/page_indicator.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:grocery_store_app/core/theme/app_colors.dart';
 import 'package:grocery_store_app/features/categories/data/models/category_model.dart';
 
