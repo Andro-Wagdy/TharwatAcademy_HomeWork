@@ -1,10 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_store_app/core/constants/app_constants.dart';
 import 'package:grocery_store_app/core/constants/assets.dart';
 import 'package:grocery_store_app/core/shared_preferences_singleton.dart';
 import 'package:grocery_store_app/core/theme/app_colors.dart';
 import 'package:grocery_store_app/core/theme/app_styles.dart';
-import 'package:grocery_store_app/features/auth/presentation/ui/create_account_view.dart';
+import 'package:grocery_store_app/features/auth/presentation/cubits/user/user_cubit.dart';
+import 'package:grocery_store_app/features/auth/presentation/ui/sign_in_view.dart';
+import 'package:grocery_store_app/features/categories/presentation/ui/home_view.dart';
 import 'package:grocery_store_app/features/onboarding/presentation/ui/onboarding_view.dart';
 
 class SplashView extends StatefulWidget {
@@ -27,14 +31,26 @@ class _SplashViewState extends State<SplashView> {
           AppConstants.seenOnboardingKey,
         ) ??
         false;
-    Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) =>
-              seenOnboarding ? CreateAccountView() : OnboardingView(),
-        ),
-      );
+    final user = FirebaseAuth.instance.currentUser;
+
+    Future.delayed(Duration(seconds: 2), () async {
+      if (!seenOnboarding) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => OnboardingView()),
+        );
+      } else if (user != null) {
+        await BlocProvider.of<UserCubit>(context).loadUser();
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeView()),
+        );
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => SignInView()),
+        );
+      }
     });
   }
 

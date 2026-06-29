@@ -7,8 +7,9 @@ import 'package:grocery_store_app/core/theme/app_styles.dart';
 import 'package:grocery_store_app/features/auth/data/validators/auth_validators.dart';
 import 'package:grocery_store_app/features/auth/presentation/cubits/user/user_cubit.dart';
 import 'package:grocery_store_app/features/auth/presentation/cubits/sign_in/sign_in_cubit.dart';
+import 'package:grocery_store_app/features/auth/presentation/ui/create_account_view.dart';
 import 'package:grocery_store_app/features/auth/presentation/ui/widgets/password_text_field.dart';
-import 'package:grocery_store_app/features/categories/presentation/ui/home_screen.dart';
+import 'package:grocery_store_app/features/categories/presentation/ui/home_view.dart';
 import 'package:grocery_store_app/widgets/custom_button.dart';
 import 'package:grocery_store_app/features/auth/presentation/ui/widgets/custom_text_form_field.dart';
 
@@ -48,7 +49,17 @@ class _CreateAccountViewBodyState extends State<SignInViewBody> {
                   style: AppStyles.p20W600.copyWith(color: AppColors.secondry),
                 ),
                 Spacer(),
-                SvgPicture.asset(Assets.assetsIconsCancelIcon),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CreateAccountView(),
+                      ),
+                    );
+                  },
+                  icon: SvgPicture.asset(Assets.assetsIconsCancelIcon),
+                ),
               ],
             ),
             SizedBox(height: 32),
@@ -82,7 +93,7 @@ class _CreateAccountViewBodyState extends State<SignInViewBody> {
                   await BlocProvider.of<UserCubit>(context).loadUser();
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    MaterialPageRoute(builder: (context) => HomeView()),
                   );
                 }
                 if (state is SignInFailure) {

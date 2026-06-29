@@ -6,8 +6,8 @@ import 'package:grocery_store_app/core/theme/app_colors.dart';
 import 'package:grocery_store_app/core/theme/app_styles.dart';
 import 'package:grocery_store_app/features/auth/presentation/cubits/user/user_cubit.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +21,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               Text(
                 'Good Morning',
-                style: AppStyles.p14W400.copyWith(
-                  color: AppColors.accentText,
-                ),
+                style: AppStyles.p14W400.copyWith(color: AppColors.accentText),
               ),
               SizedBox(height: 4),
               Row(
